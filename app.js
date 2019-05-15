@@ -1,6 +1,4 @@
     
-    var input = document.getElementById("quantidade");
-
     var botaoIncrementa = document.querySelector("#btn-incrementa");
     botaoIncrementa.addEventListener('click', incrementa);
 
@@ -10,12 +8,12 @@
 
 function incrementa()
 {
-    input.value++;
     var item = botaoIncrementa.closest('.item');
+    var input = item.querySelector(".quantidade");
+    input.value++;
     var preco = pegaPrecoItem(item);
 
     adicionaAoTotal(preco); 
-
 }
 
 function pegaPrecoItem(item){
@@ -30,6 +28,17 @@ function adicionaAoTotal(preco){
 
 function decrementa()
 {
+    var item = botaoIncrementa.closest('.item');
+    var input = item.querySelector(".quantidade");
+
+    if(input.value > 0){
+
     input.value--;
+    var preco = pegaPrecoItem(item);
+    adicionaAoTotal(-preco); 
+
+    }else{
+        console.log(input.value);
+    }
 }
 
